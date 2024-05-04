@@ -1,11 +1,14 @@
-import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
+import {
+  GoogleGenerativeAI,
+  HarmBlockThreshold,
+  HarmCategory,
+} from '@google/generative-ai';
 import MarkdownIt from 'markdown-it';
 
-import './style.css';
-
+// import '../styles/style.css';
 
 // 🔥 https://g.co/ai/idxGetGeminiKey 🔥
-let API_KEY = import.meta.env.VITE_GEMINI_KEY
+let API_KEY = import.meta.env.VITE_GEMINI_KEY;
 
 let form = document.querySelector('form');
 let promptInput = document.querySelector('input[name="prompt"]');
@@ -15,27 +18,27 @@ form.onsubmit = async (ev) => {
   ev.preventDefault();
 
   try {
-    
-
     // Assemble the prompt by combining the text with the chosen image
     let contents = [
       {
         role: 'user',
         parts: [
-          { text:  `You are a knowledgeable travel guide specializing in Karachi. 
+          {
+            text: `You are a knowledgeable travel guide specializing in Karachi. 
           When a visitor asks you about their upcoming trip using the 
           variable "${promptInput.value}", provide a comprehensive response. 
           Include detailed daily itineraries, top dining spots, and must-see attractions. 
           Ensure you account for travel logistics, such as travel times and 
-          operational hours of venues.`, }
-        ]
-      }
+          operational hours of venues.`,
+          },
+        ],
+      },
     ];
 
     // Call the gemini-pro model, and get a stream of results
     const genAI = new GoogleGenerativeAI(API_KEY);
     const model = genAI.getGenerativeModel({
-      model: "gemini-pro",
+      model: 'gemini-pro',
 
       safetySettings: [
         {
