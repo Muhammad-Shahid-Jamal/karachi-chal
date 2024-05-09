@@ -10,7 +10,77 @@
   <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
-  <main>
+  <header class="h-[50vh] flex justify-center items-center bg bg-cover bg-center relative after:content-[''] after:absolute after:w-full after:h-full after:bg-black after:opacity-50 after:z-0">
+    <form class="relative z-10" id="user-data-form">
+      <h1 class="font-bold text-2xl md:text-3xl text-center w-full block mb-10 text-white">Explore Karachi with GEMINI <img src="./assets/google-gemini-icon.webp" alt="Gemini" class="w-[70px] inline-block"/></h1>
+      <div class="flex gap-4 flex-wrap justify-center">
+        <div>
+          <input type="number" aria-describedby="helper-text-explanation"
+            class="text-sm rounded-lg block w-full p-2.5 outline-none"
+            placeholder="Number of Days" required name="days" />
+        </div>
+        <div>
+          <select name="origin" title="Origin"
+            class="text-sm rounded-lg block w-full p-3 outline-none" required>
+            <option selected disabled value="">Choose a City</option>
+            <option value="Islamabad">ISB</option>
+            <option value="Lahore">LHR</option>
+            <option value="Peshawar">PEW</option>
+          </select>
+        </div>
+        <div>
+          <input type="number" aria-describedby="helper-text-explanation"
+            class="text-sm rounded-lg block w-full p-2.5 outline-none" placeholder="Budget eg:3000" required name="budget" />
+        </div>
+      </div>
+      <div class="text-center mt-11">
+        <button type="submit" class="bg-theme px-4 py-2 text-white border-none text-xl font-bold uppercase" id="submit-gemini"><span>Chal Karachi</span> <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+          viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+            fill="currentColor" />
+          <path
+            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+            fill="currentFill" />
+        </svg></button>
+      </div>
+    </form>
+  </header>
+  <div id="flight" class="hidden flex justify-center items-center p-4">
+    <a id="" target="_blank" class="text-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 20 20" class="inline">
+    
+        <rect x="0" fill="none" width="20" height="20" />
+    
+        <g>
+    
+          <path
+            d="M17.6 2.4c-.8-.8-2.1-.1-2.7.5l-3.5 3.8-2.4-1 .6-.6c.2-.2.2-.5 0-.7-.1-.2-.4-.1-.6 0l-.9.9-1.8-.8.5-.5c.2-.2.2-.5 0-.6-.2-.2-.5-.2-.7 0l-.8.8-.5-.2c-.8-.4-1.7-.3-2.3.4l5.8 5.8L6 12.6l-3.5-.2-.5.7 3.1 1.8L6.9 18l.7-.5-.2-3.5 2.5-2.3 5.8 5.8c.6-.6.8-1.6.4-2.3l-.2-.5.8-.8c.2-.2.2-.5 0-.7-.2-.2-.5-.2-.7 0l-.5.5-.8-1.9.9-.9c.2-.2.2-.5 0-.7-.2-.2-.5-.2-.6 0l-.6.6-1-2.4L17.2 5c.6-.5 1.2-1.9.4-2.6z" />
+    
+        </g>
+    
+      </svg> Available flights
+    </a>
+  </div>
+  <main class="p-4 flex flex-wrap gap-4 justify-center" id="contentContainer">
+    <!-- content loading -->
+    <!-- <div class="relative shadow-md p-4 rounded-md mt-4">
+        <span class="absolute right-2 top-[-16px] italic text-gray-500 font-bold text-3xl drop-shadow opacity-50">Day 1</span>
+        <h2 class="text-xl font-bold text-theme">Arrival and Cultural Heritage Immersion</h2>
+        <p class="text-sm">Begin your exploration of Karachi by immersing yourself in its rich cultural heritage.</p>
+        <h2 class="mt-4 font-bold uppercase text-theme mb-2">Activities</h2>
+        <div>
+          <div class="relative h-[300px]">
+            <img src="https://placehold.co/600x400" alt="image" class="h-full w-full object-cover"/>
+            <h3 class="absolute top-0 w-full flex justify-between p-2 bg-black bg-opacity-50 text-white"><span>Visit Mohatta Palace Museum</span><span>2000/head</span></h3>
+          </div>
+          <p class="text-sm opacity-50 my-2"><img src="./assets/clock.svg" alt="clock" class="opacity-50 w-8 inline-block"/> 2hr</p>
+          <h4 class="font-bold text-theme">Description</h4>
+          <p class="text-gray text-sm opacity-80">Marvel at the stunning architecture and explore the history of Sindhi arts and crafts.</p>
+        </div>
+    </div> -->
+  </main>
+  <!-- <main>
       <img src="Karachi Chal (1).svg" style="display: block; margin-left: auto; margin-right: auto; width: 50%;"/>
       <h1>Your AI-Powered Itinerary Guide for Karachi</h1>
       <form>
@@ -26,7 +96,7 @@
   </main>
 <footer class="sticky-footer">
   <p>Karachi Chal is a project of <a href="https://codeforpakistan.org">Code for Pakistan</a> built with  ❤️ and the people of Karachi.</p>
-</footer>
+</footer> -->
 
 
   <script type="module" src="./scripts/main.js"></script>
